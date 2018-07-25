@@ -60,6 +60,9 @@ setup(
 
     packages=find_packages(exclude=['docs', 'tests']),
 
+    entry_points = {
+        'console_scripts': ['sam_alignment_reconstructor=sam_alignment_reconstructor.cli:main'],
+        
     # List run-time dependencies here.  These will be installed by pip when
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
