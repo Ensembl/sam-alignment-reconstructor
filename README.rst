@@ -9,7 +9,10 @@ Usage
 #####
 
 To install the package, enable the virtual environment where it's going to be used and run
-``$ pip install sam-alignment-reconstructor``
+
+::
+
+  $ pip install sam-alignment-reconstructor
 
 Developing
 ##########
