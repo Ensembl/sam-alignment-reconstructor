@@ -59,9 +59,9 @@ def pairwise_alignment(read, cigar, mdz):
     ref = []
     seq = []
     match_str = []
-    
+
     for idx, op in enumerate(expanded_cigar):
-        
+
         if op == 'H':
             # For hard masking, we skip over that
             continue
@@ -77,23 +77,23 @@ def pairwise_alignment(read, cigar, mdz):
             seq.append(reads[seq_pos])
             seq_pos += 1
             mdz_pos += 1
-            
+
         elif op == 'I':
-            
+
             ref.append('-')
             seq.append(reads[seq_pos])
             match_str.append(' ')
             seq_pos += 1
 
         elif op == 'D':
-            
+
             ref.append(expanded_mdz[mdz_pos])
             seq.append('-')
             match_str.append(' ')
             mdz_pos += 1
 
         elif op == 'X':
-            
+
             ref.append(expanded_mdz[mdz_pos])
             seq.append(reads[seq_pos])
             match_str.append(':')
@@ -101,7 +101,7 @@ def pairwise_alignment(read, cigar, mdz):
             mdz_pos += 1
 
         elif op == '=':
-            
+
             ref.append(reads[seq_pos])
             seq.append(reads[seq_pos])
             match_str.append('|')
@@ -109,32 +109,32 @@ def pairwise_alignment(read, cigar, mdz):
             mdz_pos += 1
 
         elif op == 'N':
-            
+
             ref.append('.')
             seq.append('.')
             match_str.append(' ')
 
         elif op == 'S':
-            
+
             ref.append('.')
             seq.append(reads[seq_pos].lower())
             match_str.append(' ')
             seq_pos += 1
 
         elif op == 'P':
-            
+
             ref.append('*')
             seq.append('*')
             match_str.append(' ')
 
     return ''.join(ref), ''.join(match_str), ''.join(seq)    
-    
+
 def cigar_expand(cigar):
     mapping = []
-    
+
     for c, op in cigar_split(cigar):
         mapping.extend([op] * c)
-    
+
     return mapping
 
 def cigar_split(cigar):
@@ -150,24 +150,22 @@ def cigar_split(cigar):
         else:
             raise ValueError("CIGAR operation %s in record %s is invalid." % (op[1], cigar))
 
-    return 
-
 def mdz_expand(mdz):
     pairs = mdz_split(mdz)
-    
+
     expanded_mdz = []
-    
+
     for p in pairs:
         expanded_mdz.extend([None] * p[0])
         expanded_mdz.extend(list(p[1]))
-        
+
     return expanded_mdz
-        
+
 
 def mdz_split(mdz):
 #    md_match = re.findall(r"([0-9]+)(\^?[A-Z]+)?", mdz)
     md_match = re.findall(r"([0-9]+)\^?([A-Z]+)?", mdz)
-    
+
     pairs = [(int(i),b) for i, b in md_match]
 
     return pairs

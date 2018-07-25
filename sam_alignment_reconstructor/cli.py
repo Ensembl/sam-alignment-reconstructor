@@ -18,8 +18,8 @@ limitations under the License.
 """
 
 from __future__ import print_function
-import click
 import sys, os
+import click
 
 sys.path.insert(0, os.path.dirname(sys.path[0]))
 from sam_alignment_reconstructor.pairwise import pairwise_alignment, split_every
@@ -27,18 +27,18 @@ from simplesam import Reader
 
 @click.command()
 def main():
-    
+
     try:
         stdin_text = click.get_text_stream('stdin')
         in_sam = Reader(stdin_text)
-    
+
         for sam in in_sam:
             ref, matches, seq = pairwise_alignment(sam.seq, sam.cigar, sam['MD'])
-    
+
             ref_split = list(split_every(50, ref))
             matches_split = list(split_every(50, matches))
             seq_split = list(split_every(50, seq))
-    
+
             print(sam.qname)
             for idx, val in enumerate(matches_split):
                 print(seq_split[idx])
