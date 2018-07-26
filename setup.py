@@ -23,7 +23,7 @@ setup(
 
     # https://pypi.python.org/pypi/setuptools_scm
     #use_scm_version=True,
-    version="0.0.3",
+    version="0.0.4",
 
     description='SAM Alignment Reconstructor',
     long_description=LONG_DESC,
@@ -62,7 +62,7 @@ setup(
     packages=find_packages(exclude=['docs', 'tests']),
 
     entry_points = {
-        'console_scripts': ['sam_alignment_reconstructor=sam_alignment_reconstructor.cli:main'],
+        'console_scripts': ['sam-alignment-reconstructor=sam_alignment_reconstructor.cli:main'],
         },
       
     # List run-time dependencies here.  These will be installed by pip when
