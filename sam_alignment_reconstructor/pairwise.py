@@ -60,7 +60,7 @@ def pairwise_alignment(read, cigar, mdz):
     seq = []
     match_str = []
 
-    for idx, op in enumerate(expanded_cigar):
+    for _, op in enumerate(expanded_cigar):
 
         if op == 'H':
             # For hard masking, we skip over that
@@ -127,9 +127,18 @@ def pairwise_alignment(read, cigar, mdz):
             seq.append('*')
             match_str.append(' ')
 
-    return ''.join(ref), ''.join(match_str), ''.join(seq)    
+    return ''.join(ref), ''.join(match_str), ''.join(seq)
 
 def cigar_expand(cigar):
+    """
+    Expand the CIGAR string in to a character map of the
+    alignment.
+
+    eg. 6M3I2M
+
+    MMMMMMIIIMM
+
+    """
     mapping = []
 
     for c, op in cigar_split(cigar):
@@ -138,6 +147,10 @@ def cigar_expand(cigar):
     return mapping
 
 def cigar_split(cigar):
+    """
+    Split the CIGAR string in to (num, op) tuples
+
+    """
     # https://github.com/brentp/bwa-meth
     if cigar == "*":
         yield (0, None)
@@ -151,6 +164,9 @@ def cigar_split(cigar):
             raise ValueError("CIGAR operation %s in record %s is invalid." % (op[1], cigar))
 
 def mdz_expand(mdz):
+    """
+    Expands the MD:Z tag in to a character map of the base changes
+    """
     pairs = mdz_split(mdz)
 
     expanded_mdz = []
@@ -163,14 +179,24 @@ def mdz_expand(mdz):
 
 
 def mdz_split(mdz):
+    """
+    Splits the MD:Z string in to (num, op) tuples
+    """
 #    md_match = re.findall(r"([0-9]+)(\^?[A-Z]+)?", mdz)
     md_match = re.findall(r"([0-9]+)\^?([A-Z]+)?", mdz)
 
-    pairs = [(int(i),b) for i, b in md_match]
+    pairs = [(int(i), b) for i, b in md_match]
 
     return pairs
 
 def split_every(n, iterable):
+    """
+    Splits an iterable every n objects
+
+    eg. split a string every 50 characters
+
+    Returns a list of the iterable object pieces
+    """
     i = iter(iterable)
     piece = list(islice(i, n))
     while piece:

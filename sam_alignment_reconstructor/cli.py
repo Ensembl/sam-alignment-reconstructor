@@ -18,15 +18,24 @@ limitations under the License.
 """
 
 from __future__ import print_function
-import sys, os
+import sys
+import os
 import click
+
+from simplesam import Reader
 
 sys.path.insert(0, os.path.dirname(sys.path[0]))
 from sam_alignment_reconstructor.pairwise import pairwise_alignment, split_every
-from simplesam import Reader
 
 @click.command()
 def main():
+    """
+    Command line interface entry point.
+
+    Reads STDIN for SAM file lines. Attempted to reconstruct the
+    original alignment for the read. Pretty prints the alignment
+    to STDOUT.
+    """
 
     try:
         stdin_text = click.get_text_stream('stdin')
@@ -41,9 +50,9 @@ def main():
 
             print(sam.qname)
             for idx, val in enumerate(matches_split):
-                print(seq_split[idx])
-                print(val)
                 print(ref_split[idx])
+                print(val)
+                print(seq_split[idx])
                 print("")
     except Exception:
         print("Error, SAM file seems to be invalid")
