@@ -3,7 +3,7 @@ Overview
 
 This package is design to reconstruct pairwise alignments from SAM files using the CIGAR string and MD:Z tag
 
-It can be used as a standalone command line tool, or as a library when get the three elements above.
+It can be used as a standalone command line tool, or as a library when given the three elements above.
 
 Usage
 #####
@@ -14,6 +14,24 @@ To install the package, enable the virtual environment where it's going to be us
 
   $ pip install sam-alignment-reconstructor
   $ cat file.sam | sam-alignment-reconstructor
+
+  MS2007487-600V3:1:2109:08999:01136
+  TTCGAAATCTCACGCTCTTTACTGAAGACCCAGATAGAGCTTATCCTAAT
+  |||||||||||||||||||||||||||||||||:||||||||||||||||
+  TTCGAAATCTCACGCTCTTTACTGAAGACCCAGNTAGAGCTTATCCTAAT
+
+  CAGGATACTGTGTGGGAGAGGTTCGAGCAGGTATTTTTAGTGGCCTATG-
+  |||||||||||||||||:||:|||||||||||||||||||||:|||||| 
+  CAGGATACTGTGTGGGANAGNTTCGAGCAGGTATTTTTAGTGNCCTATGC
+
+  ----GGTTGGTCACTTATGCCCCTGTCTTTAAAGACTACCTCTATGAAGG
+      :::|||||||||||||||||||||||||||||||||||||||||||
+  CCCACTATGGTCACTTATGCCCCTGTCTTTAAAGACTACCTCTATGAAGG
+
+  TCTCCGACAGTTTTATGAGGACAACATCATGTATGTGGAGATCAGAGCAC
+  |||||||||||||||||||||||||||||:|||||||||:||||||||||
+  TCTCCGACAGTTTTATGAGGACAACATCACGTATGTGGAAATCAGAGCAC
+
 
 Developing
 ##########
