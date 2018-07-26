@@ -21,9 +21,10 @@ successful_sam_files = [('test_DS.sam', 'test_DS.out'),
                         ('test_SI.sam', 'test_SI.out'),
                         ('test_SPI.sam', 'test_SPI.out'),
                         ('test_X=.sam', 'test_X=.out'),
+                        ('test_starcigar.sam', 'test_starcigar.out'),
     ]
 
-failure_sam_files = ['test_charstartCIGAR.sam', 'test_D_noMD.sam']
+failure_sam_files = ['test_charstartCIGAR.sam', 'test_D_noMD.sam', 'test_invalidCIGAR.sam']
 
 @pytest.mark.parametrize("sam_file", successful_sam_files)
 def test_command_line_success(sam_file):
