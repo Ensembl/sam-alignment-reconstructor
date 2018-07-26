@@ -13,6 +13,7 @@ To install the package, enable the virtual environment where it's going to be us
 ::
 
   $ pip install sam-alignment-reconstructor
+  $ cat file.sam | sam-alignment-reconstructor
 
 Developing
 ##########

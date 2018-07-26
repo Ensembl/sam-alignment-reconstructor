@@ -22,7 +22,8 @@ setup(
     name='sam-alignment-reconstructor',
 
     # https://pypi.python.org/pypi/setuptools_scm
-    use_scm_version=True,
+    #use_scm_version=True,
+    version="0.0.1",
 
     description='SAM Alignment Reconstructor',
     long_description=LONG_DESC,
