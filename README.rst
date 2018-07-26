@@ -1,3 +1,11 @@
+.. image:: https://travis-ci.com/Ensembl/sam-alignment-reconstructor.svg?branch=master
+   :target: https://travis-ci.com/Ensembl/sam-alignment-reconstructor
+.. image:: https://codecov.io/gh/Ensembl/sam-alignment-reconstructor/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/Ensembl/sam-alignment-reconstructor
+.. image:: https://readthedocs.org/projects/sam-alignment-reconstructor/badge/?version=latest
+   :target: https://sam-alignment-reconstructor.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
+
 Overview
 ########
 

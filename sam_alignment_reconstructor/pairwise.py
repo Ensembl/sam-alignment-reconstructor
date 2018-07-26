@@ -154,7 +154,7 @@ def cigar_split(cigar):
     # https://github.com/brentp/bwa-meth
     if cigar == "*":
         yield (0, None)
-        raise StopIteration
+        return
     cig_iter = groupby(cigar, lambda c: c.isdigit())
     for _, n in cig_iter:
         op = int("".join(n)), "".join(next(cig_iter)[1])
